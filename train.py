@@ -23,7 +23,6 @@ import wandb
 
 from patch_unet import create_patch_unet
 from patch_loss import PatchDiffusionLoss
-from mri_dataset import PreprocessedVolumeDataset
 from ema import ExponentialMovingAverage
 
 
@@ -74,17 +73,12 @@ def parse_args():
     return parser.parse_args()
 
 
-def load_all_volumes(data_dir, device='cpu'):
-    """
-    Load all preprocessed volumes into memory.
-    With 12 volumes of (1, 256, 320, 320) float32 ~ 1.2GB total,
-    this fits comfortably in CPU RAM.
-    """
-    dataset = PreprocessedVolumeDataset(data_dir)
-    volumes = []
-    for i in range(len(dataset)):
-        vol = dataset[i]  # (1, Z, Y, X)
-        volumes.append(vol)
+def load_all_volumes(data_dir):
+    from pathlib import Path
+    pt_files = sorted(Path(data_dir).glob('*.pt'))
+    assert len(pt_files) > 0, f"No .pt files in {data_dir}"
+    volumes = [torch.load(f, weights_only=False)['volume'] for f in pt_files]
+    print(f"  Loaded {len(volumes)} volumes from {data_dir}")
     return volumes
 
 
