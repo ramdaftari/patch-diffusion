@@ -12,10 +12,6 @@ This version:
 Also includes a standalone DDPM noise schedule (same math as sde.py)
 to avoid the omegaconf dependency.
 
-Usage:
-    from patch_loss import PatchDiffusionLoss
-    loss_fn = PatchDiffusionLoss(patch_size=32, volume_shape=(Nz, Ny, Nx))
-    loss = loss_fn(x_clean, model)
 """
 
 import torch

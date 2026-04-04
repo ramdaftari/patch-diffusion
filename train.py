@@ -5,10 +5,6 @@ Follows the structure of the original trainer in
 src/diffmodels/trainer/trainer.py as closely as possible.
 
 Usage:
-    cd ~/patch-diffusion
-    conda activate res_rob
-    python train.py
-
     # Override defaults:
     python train.py --epochs 500 --batch_size 2 --lr 2e-5
 """

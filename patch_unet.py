@@ -5,9 +5,6 @@ Only two changes from the original Krainovic et al. UNet:
   1. Upsample: scale_factor=2 in all 3 dims (was keeping Z fixed)
   2. Downsample: stride=2 in all 3 dims (was (1,2,2))
 
-Usage:
-    from patch_unet import create_patch_unet
-    model = create_patch_unet()  # uses paper defaults
 """
 
 import torch.nn as nn

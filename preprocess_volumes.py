@@ -5,12 +5,6 @@ Uses the exact same FastMRIVolumeDataset and FastMRI3DDataTransform
 that the codebase uses for reconstruction, to compute 3D MVUE volumes.
 Saves them as .pt files for patch-based diffusion training.
 
-Run from the codebase directory:
-    cd ~/trial-project/resolution_robust_3d_mri/resolution_robust_3d_mri
-    conda activate res_rob
-    python ~/patch_diffusion/preprocess_volumes.py
-
-Output: ~/patch_diffusion/data/vol_00.pt, vol_01.pt, ...
 """
 
 import os
